@@ -1,10 +1,10 @@
 data "azurerm_resource_group" "main" {
-name = "${var.prefix}-resources"
+   name = "${var.prefix}-resources"
 }
 
 data "azurerm_network_interface" "main" {
-name                = "${var.prefix}-nic1"
-resource_group_name = data.azurerm_resource_group.main.name
+   name                = "${var.prefix}-nic1"
+   resource_group_name = data.azurerm_resource_group.main.name
 }
 
 resource "azurerm_linux_virtual_machine" "default" {
