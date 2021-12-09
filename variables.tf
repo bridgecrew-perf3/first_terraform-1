@@ -1,7 +1,3 @@
-variable "project_id" {
-     description = "GCP Project ID for GKE deployment"
- }
-
-variable "region" {
-     description = "GCP Region"
- }
+variable "prefix" {
+   description = "Workshop Student ID"
+}
