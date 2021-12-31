@@ -11,5 +11,5 @@
    }
 
    variable "student_id" {
-      description = "Workshop Student ID"
+      description = "Workshop Student ID "
    }
