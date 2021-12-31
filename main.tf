@@ -1,32 +1,13 @@
-data "azurerm_resource_group" "main" {
-   name = "${var.prefix}-resources"
-}
+   resource "aws_instance" "default" {
+   ami               = "ami-0ed9277fb7eb570c9"
+   instance_type     = "t2.micro"
+   availability_zone = "us-east-1b"
 
-data "azurerm_network_interface" "main" {
-   name                = "${var.prefix}-nic1"
-   resource_group_name = data.azurerm_resource_group.main.name
-}
+   security_groups = ["default"]
 
-resource "azurerm_linux_virtual_machine" "default" {
-   name                  = "my-first-instance"
-   location              = data.azurerm_resource_group.main.location
-   resource_group_name   = data.azurerm_resource_group.main.name
-   network_interface_ids = [data.azurerm_network_interface.main.id]
-   size                  = "Standard_B1s"
-
-   os_disk {
-      caching              = "None"
-      storage_account_type = "Standard_LRS"
+   tags = {
+      Name        = "${var.student_id}-instance"
+      environment = "workshop"
+      provider    = "terraform"
    }
-
-   source_image_reference {
-      publisher = "Canonical"
-      offer     = "UbuntuServer"
-      sku       = "20.04-LTS"
-      version   = "latest"
-   }
-
-   admin_username                  = "azureuser"
-   admin_password                  = "Arct!q!!"
-   disable_password_authentication = false
    }
